@@ -12,6 +12,10 @@ public class Usuario {
         this.tipo_user = tipo_user;
     }
 
+    public Usuario() {
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
