@@ -55,6 +55,11 @@ public class ConferenciasVirtuales {
     public void setEnlaceAcceso(String enlaceAcceso) {
         this.enlaceAcceso = enlaceAcceso;
     }
+
+    @Override
+    public String toString() {
+        return "Conferencias Virtuales: " + "titulo: " + titulo + " || conferencista: " + conferencista + " || fecha: " + fecha + " || duracion: " + duracion + " || Enlace Acceso=" + enlaceAcceso;
+    }
     
     
 }

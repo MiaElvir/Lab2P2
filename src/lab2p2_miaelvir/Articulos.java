@@ -56,6 +56,11 @@ public class Articulos {
     public void setAccesoLinea(boolean accesoLinea) {
         this.accesoLinea = accesoLinea;
     }
+
+    @Override
+    public String toString() {
+        return "Articulo: " + " || titulo: " + titulo + " || autor: " + autor + " || tema: " + tema + " || fecha de Publicacion " + fechaPub + " || Acceso en Linea: " + accesoLinea;
+    }
     
     
     

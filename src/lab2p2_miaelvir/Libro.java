@@ -1,18 +1,16 @@
 
 package lab2p2_miaelvir;
 
-import java.util.Date;
-
 public class Libro {
     
-    String titulo, autor,genero, año;
+    String titulo, autor,genero, anio;
     boolean disponibilidad; 
 
     public Libro(String titulo, String autor, String genero, String año, boolean disponibilidad) {
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;
-        this.año = año;
+        this.anio = año;
         this.disponibilidad = disponibilidad;
     }
 
@@ -44,11 +42,11 @@ public class Libro {
     }
 
     public String getAño() {
-        return año;
+        return anio;
     }
 
     public void setAño(String año) {
-        this.año = año;
+        this.anio = año;
     }
 
     public boolean isDisponibilidad() {
@@ -57,6 +55,11 @@ public class Libro {
 
     public void setDisponibilidad(boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
+    }
+
+    @Override
+    public String toString() {
+        return "Libro: " + " || titulo: " + titulo + " || autor: " + autor + " || genero: " + genero + " || año: " + anio + " || disponibilidad: " + disponibilidad;
     }
     
     
