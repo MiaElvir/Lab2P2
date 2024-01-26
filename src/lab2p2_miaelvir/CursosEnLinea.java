@@ -49,7 +49,7 @@ public class CursosEnLinea {
 
     @Override
     public String toString() {
-        return "Cursos En Linea: " + "titulo: " + titulo + " || instructor: " + instructor + " || duracion: " + duracion + " || plataforma: " + plataforma;
+        return "Cursos En Linea: " + " || titulo: " + titulo + " || instructor: " + instructor + " || duracion: " + duracion + " || plataforma: " + plataforma;
     }
     
     

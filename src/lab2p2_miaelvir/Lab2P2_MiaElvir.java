@@ -123,7 +123,7 @@ public class Lab2P2_MiaElvir {
                                 listar(Base); 
                                 break; 
                             case 2: 
-                                System.out.println("--- Crear ---\n1. Libro\n2. Articulos\n3. Cursos en linea\n4. Conferencias Virtuales\nIngrese su eleccion: "); 
+                                System.out.println("--- Crear ---\n1. Libro\n2. Articulos\n3. Cursos en linea\n4. Conferencias Virtuales\n5. Salir\nIngrese su eleccion: "); 
                                 int recurso = papoy.nextInt(); 
                                 switch(recurso){
                                     case 1: 
@@ -201,32 +201,20 @@ public class Lab2P2_MiaElvir {
                                         break;       
                                 }
                                 
-                                
-                                
-                                
                                 break; 
                                 
                             case 4: 
+                                System.out.println("Ingrese el indice del elemento el cual desea modificar: ");
+                                int ind = papoy.nextInt(); 
                                 
                                 break;
                                 
                             
                         }
-                        System.out.println("--- Menu ---\n1. Listar recursos\n2. Crear recurso\n3. Salir\nIngrese su eleccion: ");
+                        System.out.println("--- Menu ---\n1. Listar recursos\n2. Crear recurso\n3. Eliminar Recurso\n4. Modificar recurso\n5. Salir\nIngrese su eleccion: ");
                         elec = papoy.nextInt(); 
                     }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                       
                 }
                 
             }else{
@@ -291,6 +279,68 @@ public class Lab2P2_MiaElvir {
                 System.out.println("El recurso parece no existir");
             }
         }
+    }
+    
+    public static void modificarRecurso(int indice, ArrayList base){
+        Object recurso = base.get(indice); 
+        if (recurso instanceof Libro){
+            Libro libro = (Libro)recurso; 
+            System.out.println("Ingrese el titulo del libro: ");
+            String titulo = papoy.next(); 
+            libro.setTitulo(titulo);
+            System.out.println("Ingrese el autor: ");
+            String autor = papoy.next();
+            libro.setAutor(autor);
+            System.out.println("Ingrese el genero: ");
+            String genero = papoy.next();
+            libro.setGenero(genero);
+            System.out.println("Ingrese el año de publicacion: ");
+            String anio = papoy.next();
+            libro.setAño(anio);
+            System.out.println("Ingrese la disponibilidad");
+            String dispo = papoy.next(); 
+            boolean d = false; 
+            if (dispo.equalsIgnoreCase("si")){
+                d = true; 
+            }
+            libro.setDisponibilidad(d);
+        }else if (recurso instanceof Articulos){
+            Articulos articulo = (Articulos)recurso;
+            System.out.println("Ingrese el titulo: ");
+            String titulo = papoy.next(); 
+            articulo.setTitulo(titulo);
+            System.out.println("Ingrese el autor: ");
+            String autor = papoy.next();
+            articulo.setAutor(autor);
+            System.out.println("Ingrese el tema: ");
+            String tema = papoy.next();
+            articulo.setTema(tema);
+            System.out.println("Ingrese la fecha de publicacion: ");
+            String fechapub = papoy.next();
+            articulo.setFechaPub(fechapub);
+            System.out.println("Ingrese el acceso en linea: ");
+            String acceso = papoy.next(); 
+            boolean acc = false; 
+            if (acceso.equalsIgnoreCase("si")){
+                acc = true; 
+            }
+            articulo.setAccesoLinea(acc);
+        }else if (recurso instanceof CursosEnLinea){
+            CursosEnLinea curso = (CursosEnLinea)recurso; 
+            System.out.println("Ingrese el titulo: ");
+            String titulo = papoy.next(); 
+            curso.setTitulo(titulo);
+            System.out.println("Ingrese el instructor: ");
+            String instructor = papoy.next();
+            curso.setInstructor(instructor);
+            System.out.println("Ingrese la duracion: ");
+            String duracion = papoy.next();
+            curso.setDuracion(duracion);
+            System.out.println("Ingrese la plataforma de enseñanza: ");
+            String plataforma = papoy.next(); 
+            curso.setPlataforma(plataforma);
+        }
+        
     }
    
     
