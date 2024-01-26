@@ -186,8 +186,22 @@ public class Lab2P2_MiaElvir {
                                 }
                                 break; 
                             case 3: 
-                                System.out.println("Ingrese el titulo del recurso o identificador unico que desea eliminar: ");
-                                String titulo = papoy.next(); 
+                                System.out.println("-- ELIMINAR --\n1. Con titulo\n2. Con indice\nIngresesu eleccion: ");
+                                int eliminar = papoy.nextInt(); 
+                                switch (eliminar){
+                                    case 1: 
+                                        System.out.println("Ingrese el titulo del recurso que desea eliminar: ");
+                                        String tituloe = papoy.next(); 
+                                        eliminarRecursoTitulo(tituloe, Base); 
+                                        break; 
+                                    case 2: 
+                                        System.out.println("Ingrese el indice del recurso que desea eliminar: ");
+                                        int indice = papoy.nextInt(); 
+                                        Base.remove(indice); 
+                                        break;       
+                                }
+                                
+                                
                                 
                                 
                                 break; 
@@ -243,6 +257,39 @@ public class Lab2P2_MiaElvir {
         for (int i = 0; i < base.size(); i++) {
             Object recurso = base.get(i); 
             System.out.println((i+1)+" "+recurso.toString());
+        }
+    }
+    
+    public static void eliminarRecursoTitulo(String elim, ArrayList base){
+        for (int i = 0; i < base.size(); i++) {
+            Object recurso = base.get(i); 
+            if (recurso instanceof Libro){
+                Libro libro = (Libro)recurso; 
+                String el = libro.getTitulo(); 
+                if (el.equalsIgnoreCase(elim)){
+                    Base.remove(recurso); 
+                }
+            }else if (recurso instanceof Articulos){
+                Articulos art = (Articulos)recurso;
+                String nom = art.getTitulo(); 
+                if (nom.equalsIgnoreCase(elim)){
+                    Base.remove(recurso); 
+                }   
+            }else if (recurso instanceof CursosEnLinea){
+                CursosEnLinea curso = (CursosEnLinea)recurso; 
+                String cur = curso.getTitulo(); 
+                if (cur.equalsIgnoreCase(elim)){
+                    Base.remove(recurso); 
+                }
+            }else if (recurso instanceof ConferenciasVirtuales){
+                ConferenciasVirtuales conferencia = (ConferenciasVirtuales)recurso; 
+                String confe = conferencia.getTitulo(); 
+                if (confe.equalsIgnoreCase(elim)){
+                    Base.remove(recurso); 
+                }
+            }else{
+                System.out.println("El recurso parece no existir");
+            }
         }
     }
    
