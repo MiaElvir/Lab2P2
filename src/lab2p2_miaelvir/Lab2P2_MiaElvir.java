@@ -16,12 +16,17 @@ public class Lab2P2_MiaElvir {
        Usuarios.add(new Usuario("pata","patito","profesor"));
        Usuarios.add(new Usuario("emilio", "papoy", "bibliotecario")); 
        
-        System.out.println("--- INICIO ---\nIngrese su usuario: ");
-        String user = papoy.next(); 
-        System.out.println("Ingrese su contraseña: ");
-        String contra = papoy.next(); 
-        
-       
+//        System.out.println("--- INICIO ---\nIngrese su usuario: ");
+//        String user = papoy.next(); 
+//        System.out.println("Ingrese su contraseña: ");
+//        String contra = papoy.next(); 
+//        
+        boolean run = true; 
+        while (run == true){
+            System.out.println("--- INICIO ---\nIngrese su usuario: ");
+            String user = papoy.next(); 
+            System.out.println("Ingrese su contraseña: ");
+            String contra = papoy.next(); 
             int pos = esUsuario(user, contra, Usuarios); 
             if (pos > 0){
                 if (Usuarios.get(pos).getTipo_user().equals("estudiante")){
@@ -179,15 +184,25 @@ public class Lab2P2_MiaElvir {
                                         String conferencista = papoy.next();
                                         System.out.println("Ingrese la fecha: ");
                                         String fecha = papoy.next();
+                                        System.out.println("Ingrese la duracion: ");
+                                        String durac = papoy.next(); 
                                         System.out.println("Ingrese el enlace de acceso: ");
                                         String enlace = papoy.next(); 
-                                        Base.add(new ConferenciasVirtuales(titulo, conferencista, fecha, fecha, enlace)); 
+                                        Base.add(new ConferenciasVirtuales(titulo, conferencista, fecha, durac, enlace)); 
                                         break; 
                                 }
                                 break; 
                             case 3: 
+                                if (Base.isEmpty()){
+                                        System.out.println("No puede eliminar recursos");
+                                        break; 
+                                }
                                 System.out.println("-- ELIMINAR --\n1. Con titulo\n2. Con indice\nIngresesu eleccion: ");
                                 int eliminar = papoy.nextInt(); 
+                                while (eliminar > Base.size()){
+                                    System.out.println("Ingrese de nuevo el indice, esta fuera de rango");
+                                    eliminar = papoy.nextInt(); 
+                                }
                                 switch (eliminar){
                                     case 1: 
                                         System.out.println("Ingrese el titulo del recurso que desea eliminar: ");
@@ -197,6 +212,11 @@ public class Lab2P2_MiaElvir {
                                     case 2: 
                                         System.out.println("Ingrese el indice del recurso que desea eliminar: ");
                                         int indice = papoy.nextInt(); 
+                                        
+                                        while ((indice > Base.size())){
+                                            System.out.println("Indice fuera de rango\nVuelvalo a ingresar: ");
+                                            indice = papoy.nextInt();
+                                        }
                                         Base.remove(indice); 
                                         break;       
                                 }
@@ -204,8 +224,17 @@ public class Lab2P2_MiaElvir {
                                 break; 
                                 
                             case 4: 
+                                if (Base.isEmpty()){
+                                    System.out.println("No puede modificar recursos");
+                                    break; 
+                                }
                                 System.out.println("Ingrese el indice del elemento el cual desea modificar: ");
                                 int ind = papoy.nextInt(); 
+                                while (ind > Base.size()-1){
+                                    System.out.println("El indice esta fuera de rango\nVuelva a ingresarlo: ");
+                                    ind = papoy.nextInt();
+                                }
+                                modificarRecurso(ind, Base); 
                                 
                                 break;
                                 
@@ -218,11 +247,20 @@ public class Lab2P2_MiaElvir {
                 }
                 
             }else{
-                System.out.println("El usuario que Ingreso no existe en nuestra base\nVuelva a Ingresarlo: ");
+                System.out.println("El usuario que Ingreso no existe en nuestra base ");
                 //falta hacer el
             }
         
-        
+            System.out.println("¿Desea volver a la pagina de acceso?\nSI o NO");
+            String confirmacion = papoy.next(); 
+            if (confirmacion.equalsIgnoreCase("si")){
+                run = true;
+                
+            }else{
+                run = false; 
+            }
+            
+        }
         
         
         
@@ -244,7 +282,7 @@ public class Lab2P2_MiaElvir {
     public static void listar(ArrayList base){
         for (int i = 0; i < base.size(); i++) {
             Object recurso = base.get(i); 
-            System.out.println((i+1)+" "+recurso.toString());
+            System.out.println((i+1)+". "+recurso.toString());
         }
     }
     
@@ -339,6 +377,23 @@ public class Lab2P2_MiaElvir {
             System.out.println("Ingrese la plataforma de enseñanza: ");
             String plataforma = papoy.next(); 
             curso.setPlataforma(plataforma);
+        }else if (recurso instanceof ConferenciasVirtuales){
+            ConferenciasVirtuales conferencia = (ConferenciasVirtuales)recurso; 
+            System.out.println("Ingrese el titulo: ");
+            String titulo = papoy.next(); 
+            conferencia.setTitulo(titulo);
+            System.out.println("Ingrese el conferencista: ");
+            String conferencista = papoy.next();
+            conferencia.setConferencista(conferencista);
+            System.out.println("Ingrese la fecha: ");
+            String fecha = papoy.next();
+            conferencia.setFecha(fecha);
+            System.out.println("Ingrese la duracion: ");
+            String durac = papoy.next(); 
+            conferencia.setDuracion(durac);
+            System.out.println("Ingrese el enlace de acceso: ");
+            String enlace = papoy.next(); 
+            conferencia.setEnlaceAcceso(enlace);
         }
         
     }
